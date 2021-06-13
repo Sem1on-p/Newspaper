@@ -23,7 +23,7 @@
     <hr>
     <p class="card-text" align="left">{{el.description}}</p>
     <div class="d-grid gap-2">
-    <a href="{% url 'form' %}" class="btn btn-dark">Читать</a>
+    <a href="{% url 'view_post' el.id %}" class="btn btn-dark">Читать</a>
     </div>
     <hr>
     <p class="card-text">{{el.data}}</p>
