@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Создание статьи{%endblock%}
+{%block head%}
+{%endblock%}
+{% block body %}
+<div class="container" style="margin-top: 100px;">
+<div class="row g-3">
+<form method="POST" action="{% url 'editor' %}" name="editor_save" id='editor_save'>
+  {% csrf_token %}
+  <div class="mb-3">
+    <div class="col">
+    <label for="exampleInputEmail1" class="form-label">Заголовок</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">
+  </div>
+  </div>
+  <div class="mb-3">
+    <div class="col">
+    <label for="exampleInputPassword1" class="form-label">Описание</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="description">
+  </div>
+  </div>
+
+  <div class="mb-3">
+  <div class="input-group">
+  <span class="input-group-text">Текст статьи</span>
+  <textarea type="text" class="form-control" aria-label="With textarea" name="text"></textarea>
+  </div>
+  </div>
+
+  <div class="style">
+  <select name="add_category" class="js-chosen form-select form-select-lg mb-3" placeholder="Выберите категорию статьи" required="">
+  <option value=""></option>
+  {% for el in category_list %}
+  <option>{{el.title}}</option>
+  {% endfor %}
+  </select>
+  </div>
+
+  <div class="style">
+  <select name="add_section" class="js-chosen form-select form-select-lg mb-3" placeholder="Выберите раздел статьи" required="">
+  <option value=""></option>
+  {% for el in section_list %}
+  <option>{{el.title}}</option>
+  {% endfor %}
+  </select>
+  </div>
+
+  <div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Изображение статьи</label>
+  <div class="input-group">
+  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="img">
+  </div>
+  </div>
+
+  <center><button form="editor_save" type="submit" name="save" class="btn btn-dark">Опубликовать</button></center>
+</form>
+</div>
+</div>
+{% endblock %}

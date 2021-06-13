@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block title%}Blog{%endblock%}
+
+{%block head%}
+{%endblock%}
+
+{%block body%}
+<div class="container">
+<h3>Последние новости</h3>
+<hr>
+<center>
+<div class="row">
+    {% for el in post_list %}
+    <div class="col-lg-3">
+    <div class="card" style="width: 18rem; margin: 20px;">
+    <img src="{{el.img.url}}" class="card-img-top" style="height: 16rem; object-fit: cover;">
+    <div class="card-body">
+    {% if el.statusPost %}
+    <span class="badge bg-danger rounded-pill" name="status" form="status">Свежее</span>
+    {% endif %}
+    <h5 class="card-title">{{el.title}}</h5>
+    <hr>
+    <p class="card-text" align="left">{{el.description}}</p>
+    <div class="d-grid gap-2">
+    <a href="{% url 'form' %}" class="btn btn-dark">Читать</a>
+    </div>
+    <hr>
+    <p class="card-text">{{el.data}}</p>
+    </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+</center>
+<h3>Интересные новости</h3>
+<hr>
+</div>
+{%endblock%}
